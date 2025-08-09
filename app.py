@@ -258,5 +258,6 @@ Aplikasi ini dikembangkan sebagai bagian dari Ujian Akhir Semester mata kuliah *
 - Streamlit untuk antarmuka aplikasi
 - K-Nearest Neighbors sebagai algoritma prediksi
 
-Model ini mencapai akurasi **85.5%** pada data uji berdasarkan validasi silang.
+Model ini mencapai akurasi **93.5%** pada data uji berdasarkan validasi silang.
+
 """)
