@@ -1,6 +1,12 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import joblib
+
+# Load model
+model = joblib.load("knn_final_model.joblib")
+
+label_encoders = joblib.load("label_encoder.joblib")
 
 # Load pipeline
 with open("knn_pipeline.pkl", "rb") as f:
