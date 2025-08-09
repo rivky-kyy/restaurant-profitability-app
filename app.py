@@ -126,16 +126,28 @@ with col2:
                 restaurant_id_clean = restaurant_id.strip()
                 menu_category_clean = menu_category.strip()
                 
+                # Validasi Restaurant ID
+                valid_ids = ["R001", "R002", "R003"]
+                if restaurant_id_clean not in valid_ids:
+                    st.error(f"Restaurant ID {restaurant_id_clean} tidak valid")
+                    st.info("Contoh Restaurant ID yang valid: R001, R002, R003")
+                    st.stop()
+                
                 # Encode inputs
                 restaurant_encoded = label_encoders["restaurant"].transform([restaurant_id_clean])[0]
                 category_encoded = label_encoders["category"].transform([menu_category_clean])[0]
                 
-                # PERBAIKAN DI BAWAH INI: Gunakan nama kolom yang sesuai
+                # PERBAIKAN 1: Gunakan nama kolom yang benar
+                # PERBAIKAN 2: Konversi ke tipe data numerik yang tepat
                 input_data = pd.DataFrame([{
-                    'RestaurantID': restaurant_encoded,  # Nama kolom diperbaiki
-                    'MenuCategory': category_encoded,    # Nama kolom diperbaiki
-                    'Price': price
+                    'RestaurantID': int(restaurant_encoded),   # Kolom dengan nama yang benar dan konversi ke int
+                    'MenuCategory': int(category_encoded),     # Kolom dengan nama yang benar dan konversi ke int
+                    'Price': float(price)                      # Konversi ke float
                 }])
+                
+                # Debugging: Tampilkan tipe data dan struktur input
+                st.write("Data yang dikirim ke model:", input_data)
+                st.write("Tipe data input:", input_data.dtypes)
                 
                 # Make prediction
                 prediction_encoded = model.predict(input_data)[0]
@@ -177,6 +189,9 @@ with col2:
                 st.info("Contoh Restaurant ID yang valid: R001, R002, R003")
             except Exception as e:
                 st.error(f"Terjadi kesalahan: {str(e)}")
+                # Tampilkan traceback lengkap untuk debugging
+                import traceback
+                st.text(traceback.format_exc())
     else:
         st.info("Silakan isi form input di sebelah kiri dan klik 'Prediksi Profitabilitas' untuk melihat hasil prediksi.")
         st.image("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80", 
