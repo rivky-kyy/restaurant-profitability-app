@@ -132,9 +132,9 @@ with col2:
                 
                 # Create input DataFrame
                 input_data = pd.DataFrame([{
-                    'restaurantid_encoded': restaurant_encoded,
-                    'menucategory_encoded': category_encoded,
-                    'Price': price
+                'RestaurantID': restaurant_encoded,
+                'MenuCategory': category_encoded,
+                'Price': price
                 }])
                 
                 # Make prediction
@@ -259,5 +259,4 @@ Aplikasi ini dikembangkan sebagai bagian dari Ujian Akhir Semester mata kuliah *
 - K-Nearest Neighbors sebagai algoritma prediksi
 
 Model ini mencapai akurasi **93.5%** pada data uji berdasarkan validasi silang.
-
 """)
