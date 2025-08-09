@@ -130,11 +130,11 @@ with col2:
                 restaurant_encoded = label_encoders["restaurant"].transform([restaurant_id_clean])[0]
                 category_encoded = label_encoders["category"].transform([menu_category_clean])[0]
                 
-                # Create input DataFrame
+                # PERBAIKAN DI BAWAH INI: Gunakan nama kolom yang sesuai
                 input_data = pd.DataFrame([{
-                'RestaurantID': restaurant_encoded,
-                'MenuCategory': category_encoded,
-                'Price': price
+                    'RestaurantID': restaurant_encoded,  # Nama kolom diperbaiki
+                    'MenuCategory': category_encoded,    # Nama kolom diperbaiki
+                    'Price': price
                 }])
                 
                 # Make prediction
