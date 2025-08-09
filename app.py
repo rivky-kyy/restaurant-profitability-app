@@ -133,17 +133,13 @@ with col2:
                     st.info("Contoh Restaurant ID yang valid: R001, R002, R003")
                     st.stop()
                 
-                # Encode inputs
-                restaurant_encoded = label_encoders["restaurant"].transform([restaurant_id_clean])[0]
-                category_encoded = label_encoders["category"].transform([menu_category_clean])[0]
-                
-                # PERBAIKAN 1: Gunakan nama kolom yang benar
-                # PERBAIKAN 2: Konversi ke tipe data numerik yang tepat
+                # Kirim data mentah, sesuai format training model
                 input_data = pd.DataFrame([{
-                    'RestaurantID': int(restaurant_encoded),   # Kolom dengan nama yang benar dan konversi ke int
-                    'MenuCategory': int(category_encoded),     # Kolom dengan nama yang benar dan konversi ke int
-                    'Price': float(price)                      # Konversi ke float
+                'RestaurantID': restaurant_id_clean,
+                'MenuCategory': menu_category_clean,
+                'Price': float(price)
                 }])
+
                 
                 # Debugging: Tampilkan tipe data dan struktur input
                 st.write("Data yang dikirim ke model:", input_data)
